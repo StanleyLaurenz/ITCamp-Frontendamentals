@@ -3,7 +3,7 @@
 // ============================================
 // Hint: import ______ from './data.js'
 
-
+import contacts from './data.js'
 
 // ============================================
 // DOM ELEMENTS (done for you)
@@ -42,7 +42,7 @@ let contactsState = [...contacts];
 
 const displayPhone = (contact) => {
   // Write your code here
-
+  return contact.info?.phone || "Not available"
 };
 
 
@@ -68,7 +68,22 @@ const displayPhone = (contact) => {
 
 const addContact = () => {
   // Write your code here
+  let newContact = {
+    id: generateId(),
+    name: nameInput.value,
+    info: {
+      email: emailInput.value,
+      phone: phoneInput.value
+    }
+  }
+  // Adds the new contact to contactsState
+  contactsState = [...contactsState, newContact]
+  // Clear inputs
+  nameInput.value = ''
+  emailInput.value = ''
+  phoneInput.value = ''
 
+  render()
 };
 
 
@@ -84,7 +99,8 @@ const addContact = () => {
 
 const deleteContact = (id) => {
   // Write your code here
-
+  contactsState = contactsState.filter(contact => contact.id != id)
+  render()
 };
 
 
@@ -98,7 +114,7 @@ const deleteContact = (id) => {
 
 const getContactById = (id) => {
   // Write your code here
-
+  return contactsState.find(contact => contact.id === id)
 };
 
 
